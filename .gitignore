@@ -56,7 +56,7 @@ typings/
 
 # gatsby files
 .cache/
-public
+# public # do not ignore public since we are deploying this!
 
 # Mac files
 .DS_Store
