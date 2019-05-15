@@ -6,10 +6,10 @@ ghpages.publish(
   {
     branch: 'master',
     repo: 'https://github.com/connorwalsh/blahg.git',
-    dest: 'static',
+    dest: 'public',
   },
   () => {
-
+    
     console.log('Deploy Complete!')
   }
 )
