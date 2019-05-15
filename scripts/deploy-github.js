@@ -2,12 +2,14 @@ const ghpages = require('gh-pages')
 
 // replace with your repo url
 ghpages.publish(
-  'static',
+  'public',
   {
     branch: 'master',
     repo: 'https://github.com/connorwalsh/blahg.git',
+    dest: 'static',
   },
   () => {
+
     console.log('Deploy Complete!')
   }
 )
