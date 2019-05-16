@@ -19,27 +19,31 @@ const IndexPage = ({ data }) => (
       {
         map(
           data.allMarkdownRemark.edges,
-          edge => (
+          ({node}) => (
             <div
               style={{
                 padding: `0.5rem 0.5rem`,
                 position: `relative`,
               }}
             >
-              <Img fixed={edge.node.frontmatter.cover_image.childImageSharp.fixed}/>
-              <div
-                style={{
-                  position: `absolute`,
-                  top: `50%`,
-                  left: `50%`,
-                  transform: `translate(-50%, -50%)`,
-                  fontWeight: `700`,
-                  fontSize: `2em`,
-                  color: `white`,
-                }}
+              <Link
+                to={node.fields.path}
               >
-                {edge.node.frontmatter.short_title}
-              </div>
+                <Img fixed={node.frontmatter.cover_image.childImageSharp.fixed}/>
+                <div
+                  style={{
+                    position: `absolute`,
+                    top: `50%`,
+                    left: `50%`,
+                    transform: `translate(-50%, -50%)`,
+                    fontWeight: `700`,
+                    fontSize: `2em`,
+                    color: `white`,
+                  }}
+                >
+                  {node.frontmatter.short_title}
+                </div>
+              </Link>
             </div>
           )
         )
@@ -53,6 +57,9 @@ export const query = graphql`
     allMarkdownRemark {
       edges {
         node {
+          fields {
+            path
+          }
           frontmatter {
             title
             short_title
