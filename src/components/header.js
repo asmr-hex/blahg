@@ -1,14 +1,15 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import {map} from "lodash"
 import Image from "./image"
 
-const Header = ({ siteTitle, siteDescription }) => (
+const Header = ({ siteTitle, siteDescription, topics }) => (
   <div
     style={{
       minWidth: `20%`,
       maxWidth: `25%`,
-      borderRight: `2px dotted hsla(0.9, 50%, 50%, 0.3)`,
+      /* borderRight: `2px dotted hsla(0.9, 50%, 50%, 0.3)`, */
       display: `flex`,
       flexDirection: `column`,
       alignItems: `center`,
@@ -38,19 +39,34 @@ const Header = ({ siteTitle, siteDescription }) => (
     </div>
     <div
       style={{
-        margin: `1.5rem 2rem`,
-        border: `1px solid black`,
+        width: `100%`,
+        padding: `1rem 2rem`,
+        display: `flex`,
+        flexDirection: `column`,
+        fontSize: `0.9em`,
       }}
     >
-      description: {siteDescription}
-    </div>
-    <div
-      style={{
-        margin: `1.5rem 2rem`,
-        border: `1px solid black`,
-      }}
-    >
-      special topics
+      <div
+        style={{
+          margin: `1rem 0rem`,
+        }}
+      >
+        {siteDescription}
+      </div>
+      <div
+        style={{
+          margin: `1rem 0rem`,
+        }}
+      >
+        {
+          map(
+            topics,
+            (v, k) => (
+              <div>{k}({v})</div>
+            )
+          )
+        }
+      </div>
     </div>
 
      <footer style={{marginTop: `auto`}}>

@@ -10,10 +10,11 @@ const IndexPage = ({ data }) => (
   <Layout>
     <div
       style={{
-        padding: `1rem 1rem`,
         width: `100%`,
         display: `flex`,
         alignItems: `flex-start`,
+        flexWrap: `wrap`,
+        justifyContent: `flex-start`,
       }}
     >
       {

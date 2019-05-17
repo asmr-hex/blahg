@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
+import {reduce} from 'lodash'
 
 import Header from "./header"
 import SEO from "./seo"
@@ -23,13 +24,30 @@ const Layout = ({ children }) => (
             description
           }
         }
+        allMarkdownRemark(limit: 2000) {
+          group(field: frontmatter___tags) {
+            fieldValue
+            totalCount
+          }
+        }
       }
     `}
     render={data => (
       <div className="content">
         <SEO title="p_p" keywords={[`music`, `programming`, `nonsense`]} />
-        <Header siteTitle={data.site.siteMetadata.title} siteDescription={data.site.siteMetadata.description}/>
-        {children}
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          siteDescription={data.site.siteMetadata.description}
+           topics={reduce(data.allMarkdownRemark.group, (acc, v) => ({...acc, [v.fieldValue]: v.totalCount}), {})}
+        />
+        <div
+          style={{
+            padding: `1rem 1rem`,
+            width: `100%`,
+          }}
+        >
+          {children}
+        </div>
       </div>
     )}
   />
